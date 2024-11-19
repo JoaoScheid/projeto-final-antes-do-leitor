@@ -109,8 +109,9 @@
                 </div>
                 <div class="mb-3">
                     {{ form.data_recebimento.label(class="form-label") }}
-                    {{ form.data_recebimento(class="form-control") }}
+                    {{ form.data_recebimento(class="form-control", id="data-recebimento") }}
                 </div>
+                
                 <div class="mb-3">
                     {{ form.descricao_produto.label(class="form-label") }}
                     {{ form.descricao_produto(class="form-control") }}
@@ -134,6 +135,24 @@
     background-color: #1183C3;
     color: white;
     padding: 20px 0;text-align: center;">&copy; 2024 Storage Hub</footer>
+    <script>
+        document.getElementById('data-recebimento').addEventListener('input', function (e) {
+            let value = e.target.value;
+            value = value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+            // Adiciona as barras no formato dd/mm/aaaa enquanto digita
+            if (value.length <= 2) {
+                value = value.replace(/(\d{2})(\d{0,2})/, '$1/$2');
+            } else if (value.length <= 4) {
+                value = value.replace(/(\d{2})(\d{2})(\d{0,2})/, '$1/$2/$3');
+            } else {
+                value = value.replace(/(\d{2})(\d{2})(\d{4})/, '$1/$2/$3');
+            }
+
+            e.target.value = value;
+        });
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/6e993e0778.js" crossorigin="anonymous"></script>
 </body>

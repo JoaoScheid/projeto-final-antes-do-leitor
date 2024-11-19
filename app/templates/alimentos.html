@@ -166,8 +166,12 @@
                                     <td ><strong>Produto:<br></strong>{{linha.nome_produto}}</td>
                                 </div>
                                 <div class="segunda" style="margin-top: 10px;">
-                                    <td><strong>Descrição:<br></strong>{{linha.descricao_produto}}</td>
+                                    <td>
+                                        <strong>Descrição:<br></strong>
+                                        {{ linha.descricao_produto[:18] }}{% if linha.descricao_produto|length > 18 %}...{% endif %}
+                                    </td>
                                 </div>
+                                
                                 <div class="segunda" style="margin-top: 10px;">
                                     <td><strong>Data:<br></strong>{{ linha.data_recebimento.strftime('%d/%m/%Y') }}</td>
                                 </div>
